@@ -180,6 +180,7 @@ async function getLatestPost(urls) {
                 console.error(`Error processing ${url}: ${err}`);
             }
         }
+        await new Promise(resolve => setTimeout(resolve, 1100)); // 1초 대기
     }
 }
 
@@ -244,13 +245,17 @@ client.once('ready', async () => {
     await client.application.commands.set(commands);
     console.log('Slash commands registered.');
 
-    setInterval(() => {
+    async function crawlCategories() {
         if (Object.keys(channels).length === 0) {
             console.log('No channels set. Please use /채널지정 to set channels.');
         } else {
-            getLatestPost(urls);
+            await getLatestPost(urls);
         }
-    }, 10000); // 10초마다 실행
+        await new Promise(resolve => setTimeout(resolve, 1000)); // 모든 카테고리 크롤링 후 1초 대기
+        crawlCategories(); // 모든 카테고리 크롤링 후 다시 시작
+    }
+
+    crawlCategories();
 });
 
 const activeKeywordLists = new Set();
@@ -270,7 +275,7 @@ client.on('interactionCreate', async interaction => {
         }
 
         if (!channelId) {
-            // 채��� ID가 비어있으면 새로운 채널 생성
+            // 채널 ID가 비어있으면 새로운 채널 생성
             try {
                 const guild = interaction.guild;
                 const newChannel = await guild.channels.create({
