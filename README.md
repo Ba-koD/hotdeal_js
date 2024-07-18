@@ -25,50 +25,26 @@ DM 명령어
 ※ 키알이란 채널에서 알림을 받고싶은 상품의 키워드를 말한다.
 
 # 봇 세팅 방법
-data폴더의 .token에 봇 토큰을 입력하고, hotdeal_js 안에있는 service_manager.sh를 실행한다.
+1. `data`폴더의 `.token`에 봇 토큰을 입력하고, `hotdeal_js` 안에있는 `service_manager.sh`를 실행한다.
+2. 직접 설치하여 사용하는경우 node와 npm, sqlite3를 설치한다.
+```bash
+sudo apt-get install nodejs=20.11.0 npm=10.2.4 sqlite3=3.37.2
+```
+3. Docker를 사용하는경우 docker와 docker-compose를 설치한다.
+```bash
+sudo apt-get install docker docker-compose
+```
+4. 설치가 완료되었다면 `service_manager.sh`를 실행한다.
 ```bash
 ./service_manager.sh
 ```
-이후 node와 npm, sqlite3가 정상적으로 설치되어있다면 
 를 실행한다.
-
-처음 service_manager를 실행하면
-```bash
-> ./service_manager.sh
-sqlite3 설치 확인중...
-sqlite3 설치 확인!
-node.js 설치 확인중...
-node.js 설치 확인!
-npm 설치 확인중...
-npm 설치 확인!
-필수 패키지 설치 확인중...
-axios@1.7.2가 이미 설치되어 있습니다.
-cheerio@1.0.0-rc.12가 이미 설치되어 있습니다.
-discord.js@14.15.3가 이미 설치되어 있습니다.
-sqlite3@5.1.7가 이미 설치되어 있습니다.
-필수 패키지 설치 확인 완료!
-Created symlink /etc/systemd/system/multi-user.target.wants/hotdeal_js.service → /etc/systemd/system/hotdeal_js.service.
-hotdeal_js.service가 정상적으로 생성되었습니다.
-```
-이와 같이 출력된다. 이후에 다시 service_manager를 실행시켜본다면,
-```bash
-./service_manager.sh
-
-1. 서비스 시작
-2. 서비스 중지
-3. 서비스 삭제
-4. 서비스 상태 확인
-5. 로그 출력 (파일로)
-6. 종료
-원하는 작업 번호를 선택해주세요: 
-```
-이와 같은 창을 확인 할 수 있다. 알맞은 번호에 맞춰서 실행하면된다.
 ## 버전 정보
 ```bash
-> node -v     
+> node -v
 v20.11.0
 
-> npm -v     
+> npm -v
 10.2.4
 
 > npm list
@@ -83,4 +59,4 @@ hotdeal_js
 ```
 
 # Last Updated
-Last Updated: 2024-07-17 22:45:00
+Last Updated: 2024-07-18 18:30:00

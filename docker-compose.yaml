@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  hotdeal_js:
+    build: .
+    container_name: hotdeal_js_container
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm start
+    stdin_open: true
+    tty: true
